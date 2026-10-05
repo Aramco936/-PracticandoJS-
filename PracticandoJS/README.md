@@ -83,7 +83,7 @@ children.length, lastElementChild, removeChild, y eventos click.
 Algunos no, como el removechild y en general la propiedad children. 
 
 **¿Tuviste dificultades?**
-si, justamente con lo de la propiedad children.
+si, justamente con lo de la propiedad children. pero solo fue de no saber que hacian.
 
 **¿Utilizaste Inteligencia Artificial?**
 si me propuso lista.children.length + 1 que da el número del siguiente elemento y lista.removeChild(lista.lastElementChild) quita el último.
@@ -102,7 +102,7 @@ addEventListener con distintos eventos, if/else, style.display. mouseover y mous
 si por las activides anteriores y conocu los eventos de mouseover y mouseout
 
 **¿Tuviste dificultades?**
-no tantas pero el boton de cambiar texto solo se nota la primera vez porque siempre asigna el mismo texto.
+no tantas pero el boton de cambiar texto solo se nota la primera vez porque siempre asigna el mismo texto. este lo deje asi por que igual cumple el evento
 
 **¿Utilizaste Inteligencia Artificial?**
 La ia me sugirio usar style.display = "none" oculta un elemento y "block" lo vuelve a mostrar;
@@ -139,7 +139,7 @@ Evento input, toLowerCase(), includes(), children, style.display
 si, ya los habia utilizado en los ejercisios anteriores, includes si fue nuevo. 
 
 **¿Tuviste dificultades?**
-si para la logica de que fuera apareciendo o desapareciendo segun las coinidencias de lo que se esta escribiendo.
+si para la logica de que fuera apareciendo o desapareciendo segun las coinidencias de lo que se esta escribiendo. que al final era con un if que cambiaba de estado el texto mienras no tuviera coincidencias con lo buscado.
 
 **¿Utilizaste Inteligencia Artificial?**
 utilice el toLowerCase() que ignora mayusculas y la linea de  nombre.includes(texto) es true si el nombre contiene el texto y con el campo vacío es true para todos, así que se muestran todas; las tarjetas que no coinciden se ocultan con display = none.
@@ -158,8 +158,56 @@ localStorage setItem, getItem, removeItem, JSON.stringify, JSON.parse, location.
 algunos pero los vinculados con el json y la modificacion de estos no los comprendia muy bien.
 
 **¿Tuviste dificultades?**
-si para implementar la permanencia de los datos del arreglo en la pagina.
+si para implementar la permanencia de los datos del arreglo en la pagina. que fue con lo de localstorage en la actividad 7 debajo de la linea que guardaba el arreglo.
 
 **¿Utilizaste Inteligencia Artificial?**
 Me sugirio usar el localStorage solo guarda texto, por eso JSON.stringify() convierte el arreglo en texto al guardar y JSON.parse() lo convierte de vuelta en arreglo al recuperar.tambien me sugirio el location.reload() recarga la página después de borrar.
 
+
+
+## Ejercicio 10   Formularios y AJAX  
+
+**¿Qué hace este ejercicio?**
+Agrega un formulario creado con JS busca un usuario de GitHub. Con fetch() consulta https://api.github.com/users/USUARIO y muestra avatar, usuario, nombre real, repositorios publicos, seguidores, seguidos y enlace al perfil
+
+**¿Qué conceptos de JavaScript utilizaste?**
+preventDefault(), fetch, promesas then / .catch, respuesta.json(), respuesta.status, respuesta.ok, throw new Error.
+**¿Ya conocías estos conceptos?**
+aqui la mayoria fue nuevo para mi, sobre todo lo del fetch y las promesas que aunque ya vistas en clase, aprendi mas cosas sobrel el funcionamiento
+
+**¿Tuviste dificultades?**
+si para entender la implementacion del fetch y con lo de la respuesta. tambien tuve un errores al momento de obtener los datos pero me di cuenta de lo que fallaba integrando verificaciones de errores
+
+**¿Utilizaste Inteligencia Artificial?**
+Use event.preventDefault() que  evita que el navegador recargue la pagina al enviar el formulario. fetch(url) para hacer la peticion y .then que se ejecuta cuando llega la respuesta. tambien me sugirio respuesta.json() convierte el texto JSON en un objeto
+
+**¿Qué entiendes por AJAX?**
+Es cuando se piden datos a un servidor desde JavaScript sin recargar la página y usando la respuesta para modificar el DOM
+
+**¿Por qué la página no necesita recargarse para obtener nueva información?**
+por que se hace la peticion en segundo plano y solo se cambia la parte que necesita ser actualizada tambien event.preventDefault() evita que el navegador recargue la pagina al enviar el formulario
+
+**¿Qué hace fetch()?**
+Envia una peticion HTTP a una URL y devuelve la promesa que sera resuelta cuando llega la respuesta del servidor.
+
+**¿Qué representa la respuesta obtenida del servidor?**
+es un objeto con la informacion de la respuesta y otra informacion
+si fue exitosa el contenido se lee con .json()
+
+**¿Qué es JSON y para qué se utilizó?**
+es un formato de texto para guardar y intercambiar datos de forma estructurada, y se utilizo por que fue lo que recibimos como respuesta y con esto pudimos crear los objetos que mostramos en la pagina
+
+**Qué hace event.preventDefault() en el formulario?**
+vita que el navegador recargue la pagina al enviar el formulario
+
+**¿Qué diferencia existe entre un error en la petición y buscar un usuario que no existe?**
+cuando se busca un usuario que no existe la peticion si puede ser completada pero con el 404 la peticion ni si quiera obtiene respuesta y el feth falla internamente en el catch.
+
+**Describe, paso a paso, el recorrido de los datos desde que el usuario presiona “Buscar usuario” hasta que la información aparece en pantalla.**
+
+1- el usuario introduce un nombre y presiona buscar
+2-Se activa el evento submit y preventDefault() evita la recarga 
+3-se verifica que los campos no tenga error o esten vacios 
+4-fetch envia la peticion a la API
+5-si todo esta bien en el status el servidor regresa el contenido en un objeto
+6-con este objeto se crean los elementos y se muestran en la pantalla mediante un appendchild sin recargar la pagina
